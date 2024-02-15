@@ -10,6 +10,7 @@ void IngresarNumero();
 void LeerOpcionGeneral(char op);
 
 float stack[MAX];
+char *cadena_error = "";
 int top = -1;
 
 int main()
@@ -33,7 +34,7 @@ void ImprimirStack()
         printf("%d. %f \n", (i + 1), stack[i]);
     }
 
-    printf("\nElija una opcion:\n\n   1. Ingresar Numero\n   2. Seleccionar Operacion\n   3. Limpiar Ultimo\n   4. Limpiar Todo\n   E. Salir\n\n");
+    printf("\nElija una opcion:\n\n   1. Ingresar Numero\n   2. Seleccionar Operacion\n   3. Limpiar Ultimo\n   4. Limpiar Todo\n   E. Salir\n %s", cadena_error);
 }
 
 void IngresarNumero()
@@ -44,13 +45,14 @@ void IngresarNumero()
 
     if (top < MAX - 1) // Verifica que haya espacio en el stack
     {
+        cadena_error = "";
         MoveStackUp();
         stack[0] = nm;
         top++;
     }
     else
     {
-        printf("\033[1;31m Ya no puedes ingresar mas numeros! La pila esta llena.\033[0m\n");
+        cadena_error = "\033[1;31m Ya no puedes ingresar mas numeros! La pila esta llena.\033[0m\n";
     }
 
     ImprimirStack();
@@ -63,6 +65,8 @@ void LimpiarUltimo()
     }
 
     stack[MAX - 1] = 0;
+    top--;
+    cadena_error = "";
     ImprimirStack();
 }
 void MoveStackUp()
