@@ -91,6 +91,7 @@ void LeerOpcionGeneral(char op)
     }
 }
 void Operar()
+
 {
     char op;
     printf("Operacion peracion desea Realizar (+ , - , * , / , c(cos(1.)) , s(sen(1.) , t(tan(1.) , p(potencia(2.^1.)) , r(raiz(1.))");
